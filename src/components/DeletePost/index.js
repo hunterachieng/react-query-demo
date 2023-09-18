@@ -26,7 +26,7 @@ const DeletePost = ({ setOpen, open, postId }) => {
   const handleClose = () => setOpen(false);
 
   const queryClient = useQueryClient();
-  const { data, isLoading, isError } = useQuery({
+  const { data } = useQuery({
     queryKey: ["posts", {userId:1}],
     queryFn: getPosts,
   });
@@ -35,9 +35,7 @@ const DeletePost = ({ setOpen, open, postId }) => {
     mutationFn: () => deletePost( postId),
     onSuccess: () => {
       queryClient.setQueryData(["posts", {userId:1}], 
-     (currentData) => currentData ? data.filter(item=>{
-        return item.id !== postId
-     }): 
+     (currentData) => currentData ? data.filter(item=>item.id !== postId): 
   data
       );
     },
