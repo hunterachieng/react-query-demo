@@ -1,0 +1,12 @@
+.edit-form{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    margin-top: 2%;
+}
+.edit-title-field{
+    width: 100%;
+
+   
+ 
+}
