@@ -18,3 +18,19 @@ h2{
 h1{
     text-align: center;
 }
+.posts-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    align-items: center;
+}
+.posts-header > button{
+    padding: 1px 16px;
+    border: none;
+    background-color: green;
+    color: white;
+    width: 100px;
+    height: 50px;
+    border-radius: 5px;
+    font-weight: bold;
+}

@@ -1,13 +1,16 @@
 import { getPosts } from "../../utils/getPosts";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import "./style.css";
+import CreatePost from "../CreatePost/CreatePost";
 
 const Posts = () => {
+    const [open, setOpen] = useState(false);
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["posts"],
+    queryKey: ["posts", {userId:1}],
     queryFn: getPosts,
   });
-
+  const handleOpen = () => setOpen(true);
   if (isLoading) {
     return <div>Loading ...</div>;
   }
@@ -17,7 +20,12 @@ const Posts = () => {
   }
   return (
     <>
-      <h1>Posts</h1>
+    <div className="posts-header">
+    <h1>Posts</h1>
+    <button onClick={handleOpen}>Add Post</button>
+    </div>
+     
+      
 
       <div className="posts-container">
         {data.map((item) => (
@@ -28,6 +36,7 @@ const Posts = () => {
           </div>
         ))}
       </div>
+      {open && <CreatePost open={open} setOpen={setOpen}/>}
     </>
   );
 };
